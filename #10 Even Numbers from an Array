@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+
+// Function declaration
+void print_even(int marks[], int size);
+
+int main()
+{
+    const int size = 5;
+    int marks[size] = { 10, 15, 20, 25, 30 };
+
+    // Call the function to print even numbers
+    print_even(marks, 5);
+
+    return 0;
+}
+
+// Function definition
+void print_even(int marks[], int size)
+{
+    // Use a for loop with index
+    for (int index = 0; index < size; index++)
+    {
+        // Check if each element is even
+        if (marks[index] % 2 == 0)
+        {
+            // Print only even values
+            cout << marks[index] << " ";
+        }
+    }
+}
