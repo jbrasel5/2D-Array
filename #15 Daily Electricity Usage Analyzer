@@ -1,0 +1,135 @@
+#include <iostream>
+using namespace std;
+
+// Function declarations
+void input_usage(int elec_usage[], int usage_count);
+void display_usage(int elec_usage[], int usage_count);
+int total_usage(int elec_usage[], int usage_count);
+float average_usage(int elec_usage[], int usage_count);
+int high_count(int elec_usage[], int usage_count);
+int highest_usage(int elec_usage[], int usage_count);
+
+int main()
+{
+    const int usage_count = 7;
+    int elec_usage[usage_count];
+    int menu_choice = 0;
+
+    // Step 1: Input usage
+    input_usage(elec_usage, usage_count); // function call
+
+    do
+    {
+        // Step 2: Menu + switch
+        cout << "\n\n============== Electricity Usage Menu ================"
+            << "\n1. Display daily usage"
+            << "\n2. Total weekly usage"
+            << "\n3. Average daily usage"
+            << "\n4. Highest usage"
+            << "\n5. Count days above 10 units"
+            << "\n6. Exit"
+            << "\nEnter your choice: ";
+        cin >> menu_choice;
+
+        switch (menu_choice)
+        {
+        case 1:
+            display_usage(elec_usage, usage_count);
+            break;
+        case 2:
+            cout << "\nTotal weekly usage = " << total_usage(elec_usage, usage_count);
+            break;
+        case 3:
+            cout << "\nAverage daily usage = " << average_usage(elec_usage, usage_count);
+            break;
+        case 4:
+            cout << "\nHighest usage = " << highest_usage(elec_usage, usage_count);
+            break;
+        case 5:
+            cout << "\nDays above 10 units = " << high_count(elec_usage, usage_count);
+            break;
+        case 6:
+            cout << "\nExiting... Goodbye!";
+            break;
+        default:
+            cout << "\nInvalid number. Try again";
+            break;
+        }
+
+
+    } while (menu_choice != 6);
+
+    return 0;
+}
+
+// Function definitions
+void input_usage(int elec_usage[], int usage_count)
+{
+    cout << "Enter electricity usage for " << usage_count << " days:\n";
+
+    for (int index = 0; index < usage_count; index++)
+    {
+        cout << "Day " << index + 1 << " usage (units): ";
+        cin >> elec_usage[index];
+    }
+}
+
+void display_usage(int elec_usage[], int usage_count)
+{
+    cout << "\nDaily usage: ";
+
+    for (int index = 0; index < usage_count; index++)
+    {
+        cout << elec_usage[index] << " ";
+    }
+}
+
+int total_usage(int elec_usage[], int usage_count)
+{
+    int sum_of_usage = 0;
+
+    for (int index = 0; index < usage_count; index++)
+    {
+        sum_of_usage += elec_usage[index];
+    }
+
+    return sum_of_usage;
+}
+
+float average_usage(int elec_usage[], int usage_count)
+{
+    int sum_of_usage = total_usage(elec_usage, usage_count);
+    float average_value = (float)sum_of_usage / usage_count;
+
+    return average_value;
+}
+
+int highest_usage(int elec_usage[], int usage_count)
+{
+    int highest_value = elec_usage[0];
+
+    for (int index = 1; index < usage_count; index++)
+    {
+        if (elec_usage[index] > highest_value)
+        {
+            highest_value = elec_usage[index];
+        }
+    }
+
+    return highest_value;
+}
+
+int high_count(int elec_usage[], int usage_count)
+{
+    int days_high = 0;
+
+    for (int index = 0; index < usage_count; index++)
+    {
+        if (elec_usage[index] >= 10)
+        {
+            days_high++;
+        }
+    }
+
+    return days_high;
+}
