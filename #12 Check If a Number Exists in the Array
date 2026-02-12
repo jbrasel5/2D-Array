@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+
+void search_element(int numbers[], int size, int search_num);
+
+int main()
+{
+    const int size = 5;
+    int numbers[size] = { 4, 7, 9, 12, 15 };
+
+    int search_num;
+
+    cout << "Enter the number: ";
+    cin >> search_num;
+
+    // Call function with a search value
+    search_element(numbers, size, search_num);
+
+    return 0;
+}
+
+// Function definition
+void search_element(int numbers[], int size, int search_num)
+{
+    bool found = false;
+
+    // Loop thru array
+    for (int index = 0; index < size; index++)
+    {
+        if (numbers[index] == search_num)
+        {
+            found = true;
+            break;
+        }
+    }
+
+    // If element matches key, print Found
+    // Otherwise, print Not Found
+    if (found)
+    {
+        cout << "Found" << endl;
+    }
+    else
+    {
+        cout << "Not Found" << endl;
+    }
+}
