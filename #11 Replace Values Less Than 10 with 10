@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+
+// Function declaration
+void replace_small(int numbers[], int size);
+
+int main()
+{
+    cout << "Replace Values Less Than 10" << endl << endl;
+
+    const int size = 5;
+    int numbers[size] = { 5, 12, 8, 20, 3 };
+
+    // Call the function
+    replace_small(numbers, size);
+
+    return 0;
+}
+
+// Function definition
+void replace_small(int numbers[], int size)
+{
+    // Loop thru array
+    for (int index = 0; index < size; index++)
+    {
+        // If value < 10, replace with 10
+        if (numbers[index] < 10)
+        {
+            numbers[index] = 10;
+        }
+        // Print updated array
+        cout << numbers[index] << " ";
+    }
+}
