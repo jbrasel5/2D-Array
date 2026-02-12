@@ -1,0 +1,142 @@
+#include <iostream>
+using namespace std;
+
+// Function declarations
+void input_marks(int student_marks[], int student_count);
+void display_marks(int student_marks[], int student_count);
+int total_marks(int student_marks[], int student_count);
+float average_marks(int student_marks[], int student_count);
+int passed_count(int student_marks[], int student_count);
+int highest_mark(int student_marks[], int student_count);
+
+int main()
+{
+    const int student_count = 5;
+    int student_marks[student_count];
+    int menu_choice = 0;
+
+    // Step 1: Input marks
+    input_marks(student_marks, student_count); // function call
+
+    do
+    {
+        // Step 2: Menu + switch
+        cout << "\n\n============== Student Marks Menu ================"
+            << "\n1. Display all marks"
+            << "\n2. Find total marks"
+            << "\n3. Find average marks"
+            << "\n4. Count passed students (pass mark = 40)"
+            << "\n5. Find highest mark"
+            << "\n6. Exit"
+            << "\nEnter your choice: ";
+        cin >> menu_choice;
+
+        switch (menu_choice)
+        {
+        case 1:
+            display_marks(student_marks, student_count);
+            break;
+        case 2:
+            cout << "\nTotal marks = " << total_marks(student_marks, student_count);
+            break;
+        case 3:
+            cout << "\nAverage marks = " << average_marks(student_marks, student_count);
+            break;
+        case 4:
+            cout << "\nPassed students = " << passed_count(student_marks, student_count);
+            break;
+        case 5:
+            cout << "\nHighest mark = " << highest_mark(student_marks, student_count);
+            break;
+        case 6:
+            cout << "\nExiting... Goodbye!";
+            break;
+        default:
+            cout << "\nInvalid number. Try again";
+            break;
+        }
+
+
+    } while (menu_choice != 6);
+
+    return 0;
+}
+
+// Function definitions
+void input_marks(int student_marks[], int student_count)
+{
+    cout << "Enter marks for " << student_count << " students:\n";
+
+    for (int index = 0; index < student_count; index++)
+    {
+        cout << "Student " << index + 1 << " mark: ";
+        cin >> student_marks[index];
+    }
+}
+
+void display_marks(int student_marks[], int student_count)
+{
+    cout << "\nMarks of all students: ";
+
+    for (int index = 0; index < student_count; index++)
+    {
+        cout << student_marks[index] << " ";
+    }
+}
+
+int total_marks(int student_marks[], int student_count)
+{
+    int sum_of_marks = 0;
+
+    for (int index = 0; index < student_count; index++)
+    {
+        sum_of_marks += student_marks[index];
+    }
+
+    return sum_of_marks;
+}
+
+float average_marks(int student_marks[], int student_count)
+{
+    int sum_of_marks = total_marks(student_marks, student_count);
+    float average_value = (float)sum_of_marks / student_count;
+
+    return average_value;
+}
+
+int passed_count(int student_marks[], int student_count)
+{
+    int passed_amt = 0;
+
+    for (int index = 0; index < student_count; index++)
+    {
+        if (student_marks[index] >= 40)
+        {
+            passed_amt++;
+        }
+    }
+
+    return passed_amt;
+}
+
+int highest_mark(int student_marks[], int student_count)
+{
+    int highest_value = student_marks[0];
+
+    for (int index = 1; index < student_count; index++)
+    {
+        if (student_marks[index] > highest_value)
+        {
+            highest_value = student_marks[index];
+        }
+    }
+
+    return highest_value;
+}
+
+/*
+in the "float average_marks" function, do we call "total_marks" b/c it's another function?
+    (instead of writing out the definition like "sum_of_marks += ...")?
+
+int passed_count function- do i need to call the int within by another name? -yes
+*/
